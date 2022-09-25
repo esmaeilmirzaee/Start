@@ -1,7 +1,7 @@
 // <h1>Not or Extremely Likely</h1>
 function NotExtremelyLikely() {
   return (
-    <div className="w-3/4 max-w-[500px] rounded border shadow p-4 overflow-hidden mx-auto shadow-lg">
+    <div className="w-3/4 min-w-[375px] max-w-[500px] rounded border shadow p-4 overflow-hidden mx-auto shadow-lg">
       <div className="flex flex-col">
         <div className="flex flex-row justify-between w-full">
           <h1 className="font-bold text-lg">Please help us improve!</h1>
