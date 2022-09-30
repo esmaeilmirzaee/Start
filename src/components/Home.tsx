@@ -1,13 +1,18 @@
+import { useRef } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 
 export default function Home() {
-  let { scrollY } = useScroll();
-  let y = useTransform(scrollY, [0, 300], [`0%`, `50%`]);
+  let ref = useRef(null);
+  let { scrollYProgress } = useScroll({
+    target: ref,
+  });
+  let y = useTransform(scrollYProgress, [0, 300], [`0%`, `50%`]);
 
   return (
-    <section className="w-escape relative -mt-[76px] flex flex-col pt-[76px]">
+    <section className="w-escape relative -mt-[76px] flex flex-col pt-[76px] relative">
       <motion.div
         style={{ y }}
+        ref={ref}
         className="absolute inset-x-0 top-0 -z-20 mx-auto max-w-[1800px]"
       >
         <div>
@@ -20,7 +25,7 @@ export default function Home() {
           >
             <source
               // src="https://assets.mixkit.co/videos/preview/mixkit-sailing-down-a-river-surrounded-by-trees-43600-large.mp4"
-              src="https://assets.mixkit.co/videos/preview/mixkit-aerial-landscape-of-a-city-at-night-41542-large.mp4"
+              src="https://assets.mixkit.co/videos/preview/mixkit-open-office-space-914-large.mp4"
               type="video/mp4"
             />
           </video>
@@ -69,7 +74,7 @@ export default function Home() {
               alt={item.alt}
               className="object-center object-cover"
             />
-            <h1 className="absolute top-2 font-bold text-2xl text-center">
+            <h1 className="absolute top-2 font-bold text-2xl text-center mx-center">
               {item.alt}
             </h1>
           </div>
@@ -84,7 +89,52 @@ export default function Home() {
           </h1>
         </div>
       </div>
-      <section className="ml-[calc(50%-50vw)] w-screen border-b border-white/10 bg-gray-50 "></section>
+      <section className="ml-[calc(50%-50vw)] w-screen border-b border-white/10 bg-gray-50 ">
+        <Post />
+      </section>
+    </section>
+  );
+}
+
+function Post() {
+  let { scrollYProgress } = useScroll();
+  let width = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  return (
+    <div className="mx-auto max-w-sm relative">
+      <motion.div
+        style={{ width }}
+        className="bg-indigo-600 h-10 left-10"
+      ></motion.div>
+      {[
+        {
+          text: "Today we're going to walk you through everything you need to know about ER Diagramming. By reading this ERD guide, you will get the essential knowledge and skills about ER Diagrams and database design. You will learn things like what is ERD, why ERD, ERD notations, how to draw ERD, etc. along with a bunch of ERD examples.",
+        },
+        {
+          text: 'Database is absolutely an integral part of software systems. To fully utilize ER Diagram in database engineering guarantees you to produce high-quality database design to use in database creation, management, and maintenance. An ER model also provides a means for communication.',
+        },
+        {
+          text: 'First of all, what is an Entity Relationship Diagram?',
+        },
+        {
+          text: 'Entity Relationship Diagram, also known as ERD, ER Diagram or ER model, is a type of structural diagram for use in database design. An ERD contains different symbols and connectors that visualize two important information: The major entities within the system scope, and the inter-relationships among these entities.',
+        },
+        {
+          text: `And that's why it's called "Entity" "Relationship" diagram (ERD)!`,
+        },
+        {
+          text: `When we talk about entities in ERD, very often we are referring to business objects such as people/roles (e.g. Student), tangible business objects (e.g. Product), intangible business objects (e.g. Log), etc. "Relationship" is about how these entities relate to each other within the system.`,
+        },
+      ].map((item) => (
+        <Section key={item.text} paragraph={item.text} />
+      ))}
+    </div>
+  );
+}
+
+function Section({ paragraph }: { paragraph: string }) {
+  return (
+    <section className="space-y-4 py-4">
+      <p>{paragraph}</p>
     </section>
   );
 }
