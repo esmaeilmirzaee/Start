@@ -1,8 +1,8 @@
 import { motion, useTransform, useScroll } from 'framer-motion';
 
 export default function Home() {
-  let { scrollYProgress } = useScroll();
-  let y = useTransform(scrollYProgress, [0, 1], [`0%`, `50%`]);
+  let { scrollY } = useScroll();
+  let y = useTransform(scrollY, [0, 300], [`0%`, `50%`]);
 
   return (
     <section className="w-escape relative -mt-[76px] flex flex-col pt-[76px]">
@@ -19,7 +19,8 @@ export default function Home() {
             className="w-full h-full object-cover object-center"
           >
             <source
-              src="https://assets.mixkit.co/videos/preview/mixkit-sailing-down-a-river-surrounded-by-trees-43600-large.mp4"
+              // src="https://assets.mixkit.co/videos/preview/mixkit-sailing-down-a-river-surrounded-by-trees-43600-large.mp4"
+              src="https://assets.mixkit.co/videos/preview/mixkit-aerial-landscape-of-a-city-at-night-41542-large.mp4"
               type="video/mp4"
             />
           </video>
@@ -75,6 +76,7 @@ export default function Home() {
         ))}
       </div>
 
+      {/* TODO */}
       <div className="mt-10 text-white">
         <div className="">
           <h1 className="font-extrabold text-3xl md:text-5xl">
