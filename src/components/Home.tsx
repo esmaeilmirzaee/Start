@@ -68,13 +68,13 @@ export default function Home() {
             alt: 'Andrei R. Popescu',
           },
         ].map((item) => (
-          <div className="grid col-span-1 text-white w-full overflow-hidden relative rounded shadow h-[200px]">
+          <div className="grid col-span-1 text-white w-full overflow-hidden relative rounded shadow h-auto md:h-[200px]">
             <img
               src={item.link}
               alt={item.alt}
               className="object-center object-cover"
             />
-            <h1 className="absolute top-2 font-bold text-2xl text-center mx-center">
+            <h1 className="absolute top-2 font-bold text-lg md:text-2xl text-center mx-center">
               {item.alt}
             </h1>
           </div>
@@ -132,9 +132,17 @@ function Post() {
 }
 
 function Section({ paragraph }: { paragraph: string }) {
+  let ref = useRef(null);
+  let { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['end end', 'start center'],
+  });
+  let width = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+
   return (
     <section className="space-y-4 py-4">
-      <p>{paragraph}</p>
+      <motion.div style={{ width }} className="bg-rose-600 h-5"></motion.div>
+      <p ref={ref}>{paragraph}</p>
     </section>
   );
 }
