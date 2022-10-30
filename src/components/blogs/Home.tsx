@@ -293,7 +293,7 @@ export function Post() {
 function ArticleTwo({ article }) {
   return (
     <div className="@container">
-      <div className={`grid @3xl:grid-cols-2 gap-8`}>
+      <div className={`grid @xl:grid-cols-2 gap-8`}>
         <img
           src={article.thumbnail}
           className={` h-full w-full rounded-2xl object-cover`}
