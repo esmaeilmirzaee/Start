@@ -290,13 +290,60 @@ export function Post() {
   );
 }
 
+function ArticleTwo({ article }) {
+  return (
+    <div className={`grid grid-cols-2 gap-8`}>
+      <img
+        src={article.thumbnail}
+        className={`rounded-2xl object-coveraspect-[3/2]`}
+      />
+      <div>
+        <div>
+          <p className={`text-sm font-semibold text-zinc-600`}>
+            {article.date}
+          </p>
+          <h1
+            className={`text-3xl leading-9  tracking-tight
+             mt-2 font-semibold`}
+          >
+            {article.title}
+          </h1>
+          <p className={`mt-3 text-zinc-600 leading-8`}>
+            {article.description}
+          </p>
+        </div>
+        <div className={`flex items-center mt-8 space-x-5`}>
+          <img src={article.author.avatar} className="h-12 w-12 rounded-full" />
+          <div className={``}>
+            <p className="text-sm font-semibold">{article.author.name}</p>
+
+            <span className="px-1.5 text-sm text-zinc-600">&middot;</span>
+
+            <p className="text-sm text-zinc-600">{article.author.category}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PostArticleTwo() {
+  return (
+    <div>
+      {posts.map((p) => (
+        <ArticleTwo key={p.title} article={p} />
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="w-screen h-auto text-zinc-800">
       <Navbar />
       <CategoryNavbar />
       <div className="mx-auto">
-        <Post />
+        <PostArticleTwo />
       </div>
     </div>
   );
