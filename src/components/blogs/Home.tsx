@@ -210,14 +210,18 @@ function Article({ article, size }) {
           </p>
           <h1
             className={`${
-              size === 's' ? 'text-xl' : 'text-3xl leading-9'
-            } mt-2 font-semibold tracking-tight`}
+              size === 's'
+                ? 'text-xl'
+                : size === 'm'
+                ? 'text-2xl leading-9  tracking-tight'
+                : 'text-3xl leading-9  tracking-tight'
+            } mt-2 font-semibold`}
           >
             {article.title}
           </h1>
           <p
             className={`${
-              size === 's' ? 'leading-7' : 'leading-8'
+              size === 's' || size === 'm' ? 'leading-7' : 'leading-8'
             } mt-3 text-zinc-600`}
           >
             {article.description}
@@ -229,7 +233,7 @@ function Article({ article, size }) {
           } flex items-center`}
         >
           <img src={article.author.avatar} className="h-12 w-12 rounded-full" />
-          <div className={`${size === 'l' ? '' : 'flex'}`}>
+          <div className={`${size === 's' ? 'flex' : ''}`}>
             <p className="text-sm font-semibold">{article.author.name}</p>
             {size === 's' && (
               <span className="px-1.5 text-sm text-zinc-600">&middot;</span>
@@ -245,7 +249,7 @@ function Article({ article, size }) {
 export function Post() {
   return (
     <div className="">
-      <div className="mx-4 max-w-4xl ">
+      <div className="max-w-4xl mx-auto">
         {posts.map((p) =>
           p.is_featured ? (
             <Article
@@ -258,7 +262,7 @@ export function Post() {
       </div>
 
       {/* cursor */}
-      <div className="flex flex-row mt-20 justify-between items-center max-w-5xl mx-auto">
+      <div className="flex flex-row my-20 justify-between items-center max-w-5xl mx-auto">
         <div
           className={`w-12 h-12 border-2 border-zinc-800 rounded-full`}
         ></div>
@@ -275,6 +279,13 @@ export function Post() {
       </div>
 
       {/* medium */}
+      <div className="mx-auto max-w-4xl">
+        <div className="grid grid-cols-2 gap-8">
+          {posts.slice(0, 4).map((p) => (
+            <Article key={p.title} article={p} size={'m'} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
