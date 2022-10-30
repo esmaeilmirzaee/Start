@@ -292,34 +292,39 @@ export function Post() {
 
 function ArticleTwo({ article }) {
   return (
-    <div className={`grid grid-cols-2 gap-8`}>
-      <img
-        src={article.thumbnail}
-        className={`rounded-2xl object-coveraspect-[3/2]`}
-      />
-      <div>
+    <div className="@container">
+      <div className={`grid @3xl:grid-cols-2 gap-8`}>
+        <img
+          src={article.thumbnail}
+          className={` h-full w-full rounded-2xl object-cover`}
+        />
         <div>
-          <p className={`text-sm font-semibold text-zinc-600`}>
-            {article.date}
-          </p>
-          <h1
-            className={`text-3xl leading-9  tracking-tight
+          <div>
+            <p className={`text-sm font-semibold text-zinc-600`}>
+              {article.date}
+            </p>
+            <h1
+              className={`text-3xl leading-9  tracking-tight
              mt-2 font-semibold`}
-          >
-            {article.title}
-          </h1>
-          <p className={`mt-3 text-zinc-600 leading-8`}>
-            {article.description}
-          </p>
-        </div>
-        <div className={`flex items-center mt-8 space-x-5`}>
-          <img src={article.author.avatar} className="h-12 w-12 rounded-full" />
-          <div className={``}>
-            <p className="text-sm font-semibold">{article.author.name}</p>
+            >
+              {article.title}
+            </h1>
+            <p className={`mt-3 text-zinc-600 leading-8`}>
+              {article.description}
+            </p>
+          </div>
+          <div className={`flex items-center mt-8 space-x-5`}>
+            <img
+              src={article.author.avatar}
+              className="h-12 w-12 rounded-full"
+            />
+            <div className={``}>
+              <p className="text-sm font-semibold">{article.author.name}</p>
 
-            <span className="px-1.5 text-sm text-zinc-600">&middot;</span>
+              <span className="px-1.5 text-sm text-zinc-600">&middot;</span>
 
-            <p className="text-sm text-zinc-600">{article.author.category}</p>
+              <p className="text-sm text-zinc-600">{article.author.category}</p>
+            </div>
           </div>
         </div>
       </div>
