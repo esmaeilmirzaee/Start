@@ -190,16 +190,91 @@ function PostTwo({ p }) {
   );
 }
 
+function Article({ article, size }) {
+  return (
+    <div
+      className={`flex flex-col gap-8 ${
+        size === 'l' ? 'grid grid-cols-2' : ''
+      }`}
+    >
+      <img
+        src={article.thumbnail}
+        className={`rounded-2xl object-cover ${
+          size === 'l' ? 'max-h-96 w-full' : 'aspect-[3/2]'
+        }`}
+      />
+      <div>
+        <div>
+          <p className={`text-sm font-semibold text-zinc-600`}>
+            {article.date}
+          </p>
+          <h1
+            className={`${
+              size === 's' ? 'text-xl' : 'text-3xl leading-9'
+            } mt-2 font-semibold tracking-tight`}
+          >
+            {article.title}
+          </h1>
+          <p
+            className={`${
+              size === 's' ? 'leading-7' : 'leading-8'
+            } mt-3 text-zinc-600`}
+          >
+            {article.description}
+          </p>
+        </div>
+        <div
+          className={`${
+            size === 'l' ? 'mt-8 space-x-5' : 'mt-5 space-x-3'
+          } flex items-center`}
+        >
+          <img src={article.author.avatar} className="h-12 w-12 rounded-full" />
+          <div className={`${size === 'l' ? '' : 'flex'}`}>
+            <p className="text-sm font-semibold">{article.author.name}</p>
+            {size === 's' && (
+              <span className="px-1.5 text-sm text-zinc-600">&middot;</span>
+            )}
+            <p className="text-sm text-zinc-600">{article.author.category}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Post() {
   return (
-    <div className="grid grid-cols-3 gap-4 mx-4">
-      {posts.map((p) =>
-        p.is_featured ? (
-          <PostTwo key={p.title} p={p} />
-        ) : (
-          <PostOne key={p.title} p={p} column={p.is_featured} />
-        )
-      )}
+    <div className="">
+      <div className="mx-4 max-w-4xl ">
+        {posts.map((p) =>
+          p.is_featured ? (
+            <Article
+              key={p.title}
+              article={p}
+              size={`${p.is_featured ? 'l' : 's'}`}
+            />
+          ) : null
+        )}
+      </div>
+
+      {/* cursor */}
+      <div className="flex flex-row mt-20 justify-between items-center max-w-5xl mx-auto">
+        <div
+          className={`w-12 h-12 border-2 border-zinc-800 rounded-full`}
+        ></div>
+        {/* <div> */}
+        <div className="grid grid-cols-3 gap-8 grid-rows-1 row-span-1 max-w-4xl">
+          {posts.slice(0, 3).map((p) => (
+            <Article key={p.title} article={p} size={`s`} />
+          ))}
+        </div>
+        <div
+          className={`w-12 h-12 border-2 border-zinc-800 rounded-full`}
+        ></div>
+        {/* </div> */}
+      </div>
+
+      {/* medium */}
     </div>
   );
 }
@@ -209,7 +284,9 @@ export default function Home() {
     <div className="w-screen h-auto text-zinc-800">
       <Navbar />
       <CategoryNavbar />
-      <Post />
+      <div className="mx-auto">
+        <Post />
+      </div>
     </div>
   );
 }
