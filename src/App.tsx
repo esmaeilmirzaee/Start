@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { Home } from './components';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen">
-      <h1 className="text-center font-bold text-6xl">Start</h1>
+    <div className='flex justify-center items-center w-screen h-screen bg-wall bg-cover'>
+      <Home />
     </div>
   );
 }
