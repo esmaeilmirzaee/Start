@@ -1,10 +1,10 @@
-import HorizontalScroller from './HorizontalScoller';
-import TrustedBy from './trustedby';
+import HorizontalScroller from "./HorizontalScoller";
+import TrustedBy from "./trustedby";
 
 // All new components will come here and spread in the application
 export const Home = () => {
   return (
-    <section className="mx-auto max-w-md p-4 border border-neutral-100 my-16 shadow-2xl overflow-scroll scroll-smooth h-full bg-white">
+    <section className="mx-auto max-w-3xl p-4 border border-neutral-100 my-16 shadow-2xl overflow-scroll scroll-smooth h-full bg-white">
       <h1 className="text-indigo-950 text-7xl font-bold font-[Melodrama]">
         This is the home page
       </h1>

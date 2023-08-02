@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState } from "react";
 
 type ScrollValue = {
   innerWidth: number;
@@ -15,9 +15,9 @@ const SizeObserver: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     handleResize();
-    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
 
-    return window.removeEventListener('resize', handleResize);
+    return window.removeEventListener("resize", handleResize);
   }, [handleResize]);
 
   return (
