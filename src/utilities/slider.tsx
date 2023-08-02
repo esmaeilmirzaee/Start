@@ -57,6 +57,8 @@ const SliderContainer: React.FC<SliderProps> = ({
       <div ref={refContent} className="inline-block">
         {children}
       </div>
+      {/* I don't understand the following line>> */}
+      <div className={enabled ? "inline-block" : "hidden"}>{children}</div>
     </div>
   );
 };
