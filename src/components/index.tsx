@@ -1,5 +1,5 @@
 import HorizontalScroller from "./HorizontalScoller";
-import TrustedBy from "./trustedby";
+import Technologies from "./technologies";
 
 // All new components will come here and spread in the application
 export const Home = () => {
@@ -8,7 +8,7 @@ export const Home = () => {
       <h1 className="text-indigo-950 text-7xl font-bold font-[Melodrama]">
         This is the home page
       </h1>
-      <TrustedBy />
+      <Technologies />
       <h2 className="font-[Bonny] text-center">
         All the components can be added in here and exported from here
       </h2>

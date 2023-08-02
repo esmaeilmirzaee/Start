@@ -2,8 +2,12 @@ import React from "react";
 
 import SliderContainer, { SliderItem } from "./slider";
 
-const ClientLogos: React.FC = () => (
-  <SliderContainer initialOffsetX={0} contentWidth={window.innerWidth}>
+const ClientLogos: React.FC<{ className?: string }> = ({ className }) => (
+  <SliderContainer
+    className={`my-2 ${className}`}
+    initialOffsetX={0}
+    contentWidth={window.innerWidth}
+  >
     {images.map((item, idx) => (
       <SliderItem key={idx} width={150}>
         <img

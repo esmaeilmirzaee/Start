@@ -1,4 +1,4 @@
-import react, { useCallback, useContext, useRef } from "react";
+import react, { useCallback, useContext, useRef, useState } from "react";
 import { SizeContext } from "./size-observer";
 import useAnimationFrame from "./use-animation-frame";
 
@@ -21,7 +21,6 @@ const SliderContainer: React.FC<SliderProps> = ({
   const refContent = useRef<HTMLDivElement>(null);
 
   const enabled = innerWidth < contentWidth + 1;
-  console.table({ innerWidth, contentWidth, enabled });
 
   useAnimationFrame(
     enabled,
@@ -30,17 +29,22 @@ const SliderContainer: React.FC<SliderProps> = ({
       const { current: elContent } = refContent;
 
       if (elContainer && elContent) {
-        refScrollX.current += 0.5;
+        refScrollX.current += 1;
         elContainer.scrollLeft = refScrollX.current;
-        if (elContainer.scrollLeft >= elContent.clientWidth) {
-          refScrollX.current = 0;
-          elContainer.scrollLeft = 0;
-        }
         console.log(
           elContainer.scrollLeft,
           elContent.clientWidth,
-          elContainer.clientWidth
+          elContainer.clientWidth,
+          refScrollX.current
         );
+        if (
+          elContainer.scrollLeft >=
+            elContent.clientWidth - elContainer.clientWidth ||
+          refScrollX.current > elContent.clientWidth
+        ) {
+          refScrollX.current = 0;
+          elContainer.scrollLeft = 0;
+        }
       }
     }, [])
   );
