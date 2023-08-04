@@ -11,17 +11,19 @@ export const ScrollContext = React.createContext<ScrollValue>({
 export const ScrollObserver: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [scrollY, scrollYSet] = useState(0);
-  const handleScroll = useCallback(() => {
+  const [scrollY, scrollYSet] = React.useState(0);
+  
+  const handleScrollY = React.useCallback(() => {
     scrollYSet(window.scrollY);
   }, []);
 
-  useEffect(() => {
-    console.log("I'm not running", window.scrollY);
-    window.addEventListener("scroll", handleScroll, { passive: true });
+  React.useEffect(() => {
+    document.addEventListener("scroll", handleScrollY, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    return () => document.removeEventListener("scroll", handleScrollY);
+  }, [handleScrollY]);
+
+  console.log({ scrollY });
 
   return (
     <ScrollContext.Provider value={{ scrollY }}>

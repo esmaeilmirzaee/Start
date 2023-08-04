@@ -1,10 +1,9 @@
-import { ScrollObserver } from "../utils/scroll-observer";
 import { TileContent, TileWrapper, TileBackground, Tile } from "./tile";
 
 export default function Projects() {
   return (
     <TileWrapper numOfPages={3}>
-      <TileBackground></TileBackground>
+      {/* <TileBackground></TileBackground> */}
       <TileContent>
         <Tile
           page={0}
